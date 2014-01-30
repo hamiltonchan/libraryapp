@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-
+  before_action :set_beer, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@books = Book.all
@@ -29,4 +29,9 @@ class BooksController < ApplicationController
 	def book_params
 		params.require(:book).permit(:title, :author, :year, :isbn, :genre)
 	end
+
+    def set_beer
+      @book = Book.find(params[:id])
+    end
+
 end
